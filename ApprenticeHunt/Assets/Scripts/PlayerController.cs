@@ -5,18 +5,29 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    // Health
     public float maxHP = 100f;
     public float currentHP;
     public Image health;
     public Image healthEffect;
 
+    //Movement
     public float speed;
     private Rigidbody2D rb;
     private Vector3 change;
     bool faceR = false;
 
+    //Animator
     private Animator animator;
     private string currentState;
+
+    //Dialog Box
+    public GameObject dialog;
+
+    //Shoot
+    public GameObject bullet;
+    private float reload;
+    public float startShot;
 
     private void Awake()
     {
@@ -27,6 +38,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        reload = startShot;
     }
 
     void Update()
@@ -49,10 +61,18 @@ public class PlayerController : MonoBehaviour
 
         DiplayHealthBar();
 
+        closeDialog();
+
+        if (currentHP < 0)
+        {
+            Death();
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            currentHP -= 15;
+            Shoot();
         }
+
 
     }
 
@@ -95,9 +115,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void Death()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Enemy")
             currentHP -= 15;
+
+        if (collision.tag == "Cat")
+            Destroy(collision.gameObject);
+    }
+
+    void closeDialog()
+    {
+        if (GameObject.Find("Dialog Manager").GetComponent<Dialog>().index % 2 == 0 && GameObject.Find("Dialog Manager").GetComponent<Dialog>().index != 0)
+        {
+            dialog.SetActive(false);
+        }
+    }
+
+    void Shoot()
+    {
+        Instantiate(bullet, transform.position, Quaternion.identity);
+        StartCoroutine(waitforAnim());
+        ChangingAnimationState("Shoot");
+    }
+
+    IEnumerator waitforAnim()
+    {
+        yield return new WaitForSeconds(3);
     }
 }
