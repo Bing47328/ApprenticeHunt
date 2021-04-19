@@ -64,14 +64,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BulletSpawner.cs" />
-    <Compile Include="Assets\Enemy.cs" />
-    <Compile Include="Assets\Projectile.cs" />
     <Compile Include="Assets\Scripts\AvatarSwitch.cs" />
+    <Compile Include="Assets\Scripts\BulletSpawner.cs" />
     <Compile Include="Assets\Scripts\CamMove.cs" />
     <Compile Include="Assets\Scripts\Dialog.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\NextScene.cs" />
     <Compile Include="Assets\Scripts\Objective.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\RoomMove.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Unity/ApprenticeHunt/ApprenticeHunt/ApprenticeHunt/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
