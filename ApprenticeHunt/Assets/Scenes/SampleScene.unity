@@ -530,7 +530,7 @@ MonoBehaviour:
   currentHP: 0
   health: {fileID: 997465849}
   healthEffect: {fileID: 1785500590}
-  speed: 10
+  speed: 8
   dialog: {fileID: 1703741429}
   bullet: {fileID: 6055454160148063631, guid: 1987f24cb4d17e34c85714fc122d7c7b, type: 3}
   shotLocation: {fileID: 1652611115}
