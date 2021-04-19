@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed;
+    public float speed = 20;
 
     Rigidbody2D rb;
 
@@ -12,12 +12,8 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        rb.AddForce(Vector3.right * speed * Time.deltaTime);
+        rb.velocity = transform.right * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -26,8 +26,7 @@ public class PlayerController : MonoBehaviour
 
     //Shoot
     public GameObject bullet;
-    private float reload;
-    public float startShot;
+    public Transform shotLocation;
 
     private void Awake()
     {
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        reload = startShot;
     }
 
     void Update()
@@ -50,14 +48,20 @@ public class PlayerController : MonoBehaviour
         if (change != Vector3.zero)
         {
             MoveCharacter();
-            ChangingAnimationState("Walk");
         }
         else
         {
             ChangingAnimationState("Idle");
         }
 
-        flip();
+        if (change.x < 0 && faceR)
+        {
+            flip();
+        }
+        else if (change.x > 0 && !faceR)
+        {
+            flip();
+        }
 
         DiplayHealthBar();
 
@@ -67,13 +71,6 @@ public class PlayerController : MonoBehaviour
         {
             Death();
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Shoot();
-        }
-
-
     }
 
     void ChangingAnimationState(string newState)
@@ -86,19 +83,19 @@ public class PlayerController : MonoBehaviour
     void MoveCharacter()
     {
         rb.MovePosition(transform.position + change * speed * Time.deltaTime);
+        ChangingAnimationState("Walk");
     }
 
     void flip()
     {
         faceR = !faceR;
-        if (change.x < 0 && faceR)
-        {
+        shotLocation.Rotate(0, -180, 0);
+
+
+        if(faceR)
+           this.GetComponent<SpriteRenderer>().flipX = true;
+        else
             this.GetComponent<SpriteRenderer>().flipX = false;
-        }
-        else if (change.x > 0 && !faceR)
-        {
-            this.GetComponent<SpriteRenderer>().flipX = true;
-        }
     }
 
     protected virtual void DiplayHealthBar()
@@ -137,15 +134,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Shoot()
-    {
-        Instantiate(bullet, transform.position, Quaternion.identity);
-        StartCoroutine(waitforAnim());
-        ChangingAnimationState("Shoot");
-    }
-
-    IEnumerator waitforAnim()
-    {
-        yield return new WaitForSeconds(3);
-    }
 }
