@@ -14,6 +14,9 @@ public class RoomMove : MonoBehaviour
     public GameObject text;
     public Text placeText;
 
+    public bool changeBounds;
+    public Vector2 newMax;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +26,6 @@ public class RoomMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,6 +35,10 @@ public class RoomMove : MonoBehaviour
             cam.minPosition += cameraChange;
             cam.maxPosition += cameraChange;
             collision.transform.position += playerChange;
+            if (changeBounds)
+            {
+                cam.maxPosition += newMax;
+            }
 
             if (needText)
             {
