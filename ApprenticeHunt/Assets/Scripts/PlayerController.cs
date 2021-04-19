@@ -1,9 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public float maxHP = 100f;
+    public float currentHP;
+    public Image health;
+    public Image healthEffect;
+
     public float speed;
     private Rigidbody2D rb;
     private Vector3 change;
@@ -15,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        currentHP = maxHP;
     }
 
     void Start()
@@ -38,13 +45,13 @@ public class PlayerController : MonoBehaviour
             ChangingAnimationState("Idle");
         }
 
-        if (change.x < 0 && faceR)
+        flip();
+
+        DiplayHealthBar();
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            flip();
-        }
-        else if (change.x > 0 && !faceR)
-        {
-            flip();
+            currentHP -= 15;
         }
 
     }
@@ -64,6 +71,33 @@ public class PlayerController : MonoBehaviour
     void flip()
     {
         faceR = !faceR;
-        transform.Rotate(0f, 180f, 0f);
+        if (change.x < 0 && faceR)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else if (change.x > 0 && !faceR)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        }
+    }
+
+    protected virtual void DiplayHealthBar()
+    {
+        health.fillAmount = currentHP / maxHP;
+
+        if (healthEffect.fillAmount > health.fillAmount)
+        {
+            healthEffect.fillAmount -= 0.005f;
+        }
+        else
+        {
+            healthEffect.fillAmount = health.fillAmount;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+            currentHP -= 15;
     }
 }
