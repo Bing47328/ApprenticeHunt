@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     //Shoot
     public GameObject bullet;
     public Transform shotLocation;
+    bool isShooting = false;
 
     private void Awake()
     {
@@ -45,9 +46,13 @@ public class PlayerController : MonoBehaviour
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
 
-        if (change != Vector3.zero)
+        if (change != Vector3.zero && !isShooting)
         {
             MoveCharacter();
+        }
+        else if (isShooting)
+        {
+            change = Vector3.zero;
         }
         else
         {
@@ -70,6 +75,11 @@ public class PlayerController : MonoBehaviour
         if (currentHP < 0)
         {
             Death();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Shoot();
         }
     }
 
@@ -117,6 +127,12 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void Shoot()
+    {
+        isShooting = true;
+        StartCoroutine(waitforAnim("Shoot"));
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
@@ -132,6 +148,13 @@ public class PlayerController : MonoBehaviour
         {
             dialog.SetActive(false);
         }
+    }
+
+    IEnumerator waitforAnim(string anim)
+    {
+        ChangingAnimationState(anim);
+        yield return new WaitForSeconds(.2f);
+        isShooting = false;
     }
 
 }
