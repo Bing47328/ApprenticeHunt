@@ -11,6 +11,7 @@ public class Objective : MonoBehaviour
         if (collision.tag == "Player")
         {
             textBox.SetActive(true);
+            
 
             Destroy(gameObject.GetComponent<BoxCollider2D>());
         }

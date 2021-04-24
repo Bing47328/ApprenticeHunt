@@ -135,11 +135,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Vector2 spawnPos = new Vector2(5, 5);
+
         if (collision.tag == "Enemy")
             currentHP -= 15;
 
         if (collision.tag == "Cat")
-            Destroy(collision.gameObject);
+            //GameObject cat = Instantiate(spawnPos, Quaternion.identity) as GameObject;
+            //newTail.transform.parent = GameObject.Find("Tail Holder");
     }
 
     void closeDialog()
