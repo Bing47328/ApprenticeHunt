@@ -535,6 +535,7 @@ MonoBehaviour:
   dialog: {fileID: 1703741429}
   bullet: {fileID: 6055454160148063631, guid: 1987f24cb4d17e34c85714fc122d7c7b, type: 3}
   shotLocation: {fileID: 1652611115}
+  cat: {fileID: 3559169356275465822, guid: 432192d224b978e45804bab8c08e0fb6, type: 3}
 --- !u!95 &318377905
 Animator:
   serializedVersion: 3

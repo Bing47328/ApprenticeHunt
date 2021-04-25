@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class PlayerController : MonoBehaviour
     public Transform shotLocation;
     bool isShooting = false;
 
+    public GameObject cat;
+    private int cats;
+    public List<Transform> tailPositions;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -49,6 +54,10 @@ public class PlayerController : MonoBehaviour
         if (change != Vector3.zero && !isShooting)
         {
             MoveCharacter();
+            if (cats > 0)
+            {
+                MoveCat();
+            }
         }
         else if (isShooting)
         {
@@ -96,6 +105,18 @@ public class PlayerController : MonoBehaviour
         ChangingAnimationState("Walk");
     }
 
+    void MoveCat()
+    {
+        Vector3 lastPos = transform.position;
+
+        if (tailPositions.Count >= 1)
+        {
+            tailPositions.Last().position = lastPos;
+            tailPositions.Insert(0, tailPositions.Last());
+        }
+
+    }
+
     void flip()
     {
         faceR = !faceR;
@@ -141,8 +162,13 @@ public class PlayerController : MonoBehaviour
             currentHP -= 15;
 
         if (collision.tag == "Cat")
-            //GameObject cat = Instantiate(spawnPos, Quaternion.identity) as GameObject;
-            //newTail.transform.parent = GameObject.Find("Tail Holder");
+        {
+            cats++;
+
+            GameObject newCat = Instantiate(cat, spawnPos, Quaternion.identity) as GameObject;
+            newCat.transform.parent = GameObject.Find("Tail Holder").transform;
+            tailPositions.Add(newCat.transform);
+        }
     }
 
     void closeDialog()
