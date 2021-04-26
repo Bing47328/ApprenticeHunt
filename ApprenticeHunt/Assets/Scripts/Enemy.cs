@@ -12,21 +12,17 @@ public class Enemy : MonoBehaviour
     public Image healthEffect;
 
     // Movement
-    public float moveSpeed;
-    private Transform target;
+    [SerializeField]protected private float moveSpeed = 1;
+    protected private Transform target;
     private SpriteRenderer sr;
-
-    public Transform wayPoint1, wayPoint2;
-    private Transform wayPointTarget;
-    private float distance;
+    [SerializeField]protected private float distance = 4;
 
 
-    private void Awake()
+    private void Start()
     {
         currentHP = maxHP;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         sr = gameObject.GetComponent<SpriteRenderer>();
-        wayPointTarget = wayPoint1;
     }
 
     private void Update()
@@ -41,23 +37,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Move()
+    protected virtual void Move()
     {
-        if (Vector2.Distance(transform.position, target.position) > distance)
+        if (Vector2.Distance(transform.position, target.position) < distance)
         {
-
-            if (Vector2.Distance(transform.position, wayPoint1.position) < 0.01f)
-            {
-                wayPointTarget = wayPoint2;
-            }
-            if (Vector2.Distance(transform.position, wayPoint2.position) < 0.01f)
-            {
-                wayPointTarget = wayPoint1;
-            }
-            transform.position = Vector2.MoveTowards(transform.position, wayPointTarget.position, moveSpeed * Time.deltaTime);
-
+            transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
         }
-           // transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+           
     }
 
     void Death()
@@ -65,7 +51,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void TurnDirection()
+    protected virtual void TurnDirection()
     {
         if (transform.position.x > target.position.x)
         {

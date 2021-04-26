@@ -13497,9 +13497,9 @@ GameObject:
   - component: {fileID: 1087089415}
   - component: {fileID: 1087089414}
   - component: {fileID: 1087089413}
-  - component: {fileID: 1087089416}
   - component: {fileID: 1087089417}
   - component: {fileID: 1087089418}
+  - component: {fileID: 1087089416}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -13565,7 +13565,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d8fb05487e8496e40b8038d2b870cd7b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b3e90e982830897458355abbe2a7b5c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -13600,14 +13600,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1087089412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b8f971996e404c4db99e27c4b52a695, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f810e2baf530f046882975a63912661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
   currentHP: 0
   health: {fileID: 419548915}
   healthEffect: {fileID: 1578071190}
-  moveSpeed: 1.5
+  moveSpeed: 1
+  distance: 6
   wayPoint1: {fileID: 1497199512}
   wayPoint2: {fileID: 281587695}
 --- !u!61 &1087089417
@@ -13627,7 +13628,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0666667, y: 1.0666667}
+    oldSize: {x: 1.6, y: 1.6}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
