@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     //Animator
     private Animator animator;
+    private Animator catAnimator;
     private string currentState;
 
     //Dialog Box
@@ -30,10 +31,12 @@ public class PlayerController : MonoBehaviour
     public Transform shotLocation;
     bool isShooting = false;
 
+    //Cat
     public GameObject cat;
-    private int cats;
     public List<Transform> tailPositions;
 
+
+    public GameObject Dead;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -54,10 +57,6 @@ public class PlayerController : MonoBehaviour
         if (change != Vector3.zero && !isShooting)
         {
             MoveCharacter();
-            if (cats > 0)
-            {
-                MoveCat();
-            }
         }
         else if (isShooting)
         {
@@ -86,7 +85,7 @@ public class PlayerController : MonoBehaviour
             Death();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !isShooting)
         {
             Shoot();
         }
@@ -103,11 +102,13 @@ public class PlayerController : MonoBehaviour
     {
         rb.MovePosition(transform.position + change * speed * Time.deltaTime);
         ChangingAnimationState("Walk");
+
+        MoveCat();
     }
 
     void MoveCat()
     {
-        Vector3 lastPos = transform.position;
+        Vector3 lastPos = GameObject.Find("Tail Holder").transform.position;
 
         if (tailPositions.Count >= 1)
         {
@@ -120,13 +121,9 @@ public class PlayerController : MonoBehaviour
     void flip()
     {
         faceR = !faceR;
-        shotLocation.Rotate(0, -180, 0);
+        transform.Rotate(0, 180, 0);
+        GameObject.Find("HP Canvas").transform.Rotate(0, 180f, 0);
 
-
-        if(faceR)
-           this.GetComponent<SpriteRenderer>().flipX = true;
-        else
-            this.GetComponent<SpriteRenderer>().flipX = false;
     }
 
     protected virtual void DiplayHealthBar()
@@ -145,6 +142,7 @@ public class PlayerController : MonoBehaviour
 
     void Death()
     {
+        Dead.SetActive(true);
         Destroy(gameObject);
     }
 
@@ -163,8 +161,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.tag == "Cat")
         {
-            cats++;
-
+            Destroy(collision.gameObject);
             GameObject newCat = Instantiate(cat, spawnPos, Quaternion.identity) as GameObject;
             newCat.transform.parent = GameObject.Find("Tail Holder").transform;
             tailPositions.Add(newCat.transform);
@@ -182,7 +179,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator waitforAnim(string anim)
     {
         ChangingAnimationState(anim);
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.3f);
         isShooting = false;
     }
 

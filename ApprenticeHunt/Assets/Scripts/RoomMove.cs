@@ -16,6 +16,7 @@ public class RoomMove : MonoBehaviour
 
     public bool changeBounds;
     public Vector2 newMax;
+    public Vector2 newMin;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class RoomMove : MonoBehaviour
             if (changeBounds)
             {
                 cam.maxPosition += newMax;
+                cam.minPosition += newMin;
             }
 
             if (needText)
