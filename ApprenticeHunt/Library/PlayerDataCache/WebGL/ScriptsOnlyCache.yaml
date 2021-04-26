@@ -5,17 +5,22 @@ ScriptsOnlyBuild:
     - BulletSpawner
     - CamMove
     - Dialog
-    - Enemy
+    - Mudmelt
     - NextScene
     - Objective
     - PlayerController
     - Projectile
     - RoomMove
+    - Scenes
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
+    - UnityEditor.Tilemaps.GridPaintPaletteClipboard
+    - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
+    - UnityEditor.Tilemaps.PaintableSceneViewGrid
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
     Unity.Rider.Editor.dll:
@@ -23,8 +28,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -64,11 +71,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11782}
     - Class: 114
-      Script: {instanceID: 12708}
+      Script: {instanceID: 11812}
     - Class: 114
-      Script: {instanceID: 13092}
+      Script: {instanceID: 12710}
     - Class: 114
-      Script: {instanceID: 14876}
+      Script: {instanceID: 13094}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -129,25 +136,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11782}
     - Class: 114
-      Script: {instanceID: 11912}
+      Script: {instanceID: 11812}
     - Class: 114
-      Script: {instanceID: 11934}
+      Script: {instanceID: 11914}
     - Class: 114
-      Script: {instanceID: 12194}
+      Script: {instanceID: 11936}
     - Class: 114
-      Script: {instanceID: 12254}
+      Script: {instanceID: 12196}
     - Class: 114
-      Script: {instanceID: 12490}
+      Script: {instanceID: 12492}
     - Class: 114
-      Script: {instanceID: 12658}
+      Script: {instanceID: 12660}
     - Class: 114
-      Script: {instanceID: 12708}
+      Script: {instanceID: 12710}
     - Class: 114
-      Script: {instanceID: 12912}
+      Script: {instanceID: 12914}
     - Class: 114
-      Script: {instanceID: 13028}
+      Script: {instanceID: 13030}
     - Class: 114
-      Script: {instanceID: 13092}
+      Script: {instanceID: 13094}
+    - Class: 114
+      Script: {instanceID: 17862}
+    - Class: 114
+      Script: {instanceID: 75552}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -315,7 +326,7 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
-      Hash: 8286ed99283fe8a6b4a9c97aa4f710c4
+      Hash: 475f3e80b755e96ce28a63d6b069336f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Objective
@@ -367,6 +378,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NextScene
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -441,7 +458,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: dc8aa3539e04737ac26279a390bd64ae
+      Hash: 691c944c1974a115940b9bd6a124f331
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Enemy
@@ -495,7 +512,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 834fae9308982323d010e1a6ca83ff8d
+      Hash: 6292ec0b6971dcf7227b9777a25f0d36
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -549,7 +566,7 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
-      Hash: 3184013f7459f1afdb8c01114932e091
+      Hash: 9465a7f8a439e1743b9bde9aedab8c1f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RoomMove
@@ -651,13 +668,18 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
+      Hash: b3b5ee6ab66c82434c2ecdc7354f9e66
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Mudmelt
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: NextScene
+    className: Scenes
   platform: 20
   scenePathNames:
   - Assets/Scenes/Intro.unity
   - Assets/Scenes/SampleScene.unity
-  playerPath: D:/Unity/ApprenticeHunt/ApprenticeHunt/ApprenticeHunt/ApprenticeHunt
-    Prototype
+  playerPath: D:/Unity/ApprenticeHunt/ApprenticeHuntWEBGL
