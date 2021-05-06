@@ -179,7 +179,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator waitforAnim(string anim)
     {
         ChangingAnimationState(anim);
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.2f);
+        Instantiate(bullet, shotLocation.position, shotLocation.rotation);
         isShooting = false;
     }
 
