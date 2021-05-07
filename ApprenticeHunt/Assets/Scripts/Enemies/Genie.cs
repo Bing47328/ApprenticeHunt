@@ -7,9 +7,16 @@ public class Genie : Enemy
     private float shotRate = 2.1f;
     private float shotTimer;
     private string currentState;
+    private AudioSource audioSource;
+
 
     public GameObject projectile;
     public Animator animator;
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     protected override void Move()
     {
@@ -31,9 +38,13 @@ public class Genie : Enemy
 
         if (shotTimer > shotRate)
         {
-            ChangingAnimationState("Shoot");
-            Instantiate(projectile, transform.position, Quaternion.identity);
-            shotTimer = 0;
+            if (Vector2.Distance(transform.position, target.position) < distance)
+            {
+                ChangingAnimationState("Shoot");
+                audioSource.Play();
+                Instantiate(projectile, transform.position, Quaternion.identity);
+                shotTimer = 0;
+            }
         }
         else
         {

@@ -24,6 +24,15 @@ public class PlayerController : MonoBehaviour
 
     //Dialog Box
     public GameObject dialog;
+    public GameObject dialog2;
+    public GameObject dialog3;
+    public GameObject dialog4;
+    public GameObject dialog5;
+    private bool dialogOn;
+    private bool dialog2On;
+    private bool dialog3On;
+    private bool dialog4On;
+    private bool dialog5On;
 
     //Shoot
     public GameObject bullet;
@@ -54,9 +63,11 @@ public class PlayerController : MonoBehaviour
     private float attackSpeed = 1f;
     private float canAttack;
 
+    private AudioSource hurt;
 
     private void Awake()
     {
+        hurt = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         currentHP = maxHP;
     }
@@ -66,7 +77,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
@@ -84,6 +95,10 @@ public class PlayerController : MonoBehaviour
         {
             ChangingAnimationState("Idle");
         }
+    }
+
+    void Update()
+    {
 
         if (change.x < 0 && faceR)
         {
@@ -104,9 +119,18 @@ public class PlayerController : MonoBehaviour
             Shoot();
         }
 
-        if (winCount == 4)
+        if (winCount == 8)
         {
             Exit.SetActive(true);
+
+            if (dialogOn && dialog2On && dialog3On && dialog4On)
+            {
+                dialog5.SetActive(true);
+                if (dialog5On)
+                {
+                    dialog5.SetActive(false);
+                }
+            }
         }
     }
 
@@ -168,7 +192,7 @@ public class PlayerController : MonoBehaviour
     }
     public void TakeDMG(int dmgAmount)
     {
-        //hurt.Play();
+        hurt.Play();
         currentHP -= dmgAmount;
         if (currentHP <= 0)
         {
@@ -234,9 +258,29 @@ public class PlayerController : MonoBehaviour
 
     void closeDialog()
     {
-        if (GameObject.Find("Dialog Manager").GetComponent<Dialog>().index % 2 == 0 && GameObject.Find("Dialog Manager").GetComponent<Dialog>().index != 0)
+        if (GameObject.Find("Dialog Manager").GetComponent<Dialog>().index == 2)
         {
             dialog.SetActive(false);
+            dialogOn = true;
+        }
+        if (GameObject.Find("Dialog Manager 2").GetComponent<Dialog>().index == 2)
+        {
+            dialog2.SetActive(false);
+            dialog2On = true;
+        }
+        if (GameObject.Find("Dialog Manager 3").GetComponent<Dialog>().index == 2)
+        {
+            dialog3.SetActive(false);
+            dialog3On = true;
+        }
+        if (GameObject.Find("Dialog Manager 4").GetComponent<Dialog>().index == 2)
+        {
+            dialog4.SetActive(false);
+            dialog4On = true;
+        }
+        if (GameObject.Find("Dialog Manager 5").GetComponent<Dialog>().index == 2)
+        {
+            dialog5On = true;
         }
     }
 

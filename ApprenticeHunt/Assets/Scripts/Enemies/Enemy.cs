@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer sr;
     [SerializeField]protected private float distance = 4;
 
+    //Sound Effect
+    public AudioSource hit;
+
 
     private void Start()
     {
@@ -91,7 +94,10 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Projectile")
+        {
             currentHP -= 15;
+            hit.Play();
+        }
 
     }
 }

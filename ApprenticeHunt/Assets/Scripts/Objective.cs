@@ -4,30 +4,18 @@ using UnityEngine;
 
 public class Objective : MonoBehaviour
 {
-    public GameObject textBox;
-    public bool key;
-    public GameObject door;
-    public GameObject exit;
+    public GameObject dialog;
+
+    private void Awake()
+    {
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (key)
+        if (collision.tag == "Player")
         {
-            if (collision.tag == "Player")
-            {
-                Destroy(door);
-                Destroy(gameObject);
-            }
-        }
-        else if (!key)
-        {
-            if (collision.tag == "Player")
-            {
-                textBox.SetActive(true);
-                exit.SetActive(true);
-                Destroy(gameObject.GetComponent<BoxCollider2D>());
-
-            }
+            dialog.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 }
