@@ -10,6 +10,7 @@ TagManager:
   - Cat 2
   - Cat 3
   - Cat 4
+  - EnemyProjectiles
   layers:
   - Default
   - TransparentFX

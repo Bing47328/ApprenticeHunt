@@ -53,7 +53,6 @@ public class PlayerController : MonoBehaviour
     public Animator Cat2animator;
     public Animator Cat3animator;
     public Animator Cat4animator;
-    private int winCount = 0;
 
     //Death
     public GameObject Dead;
@@ -119,7 +118,7 @@ public class PlayerController : MonoBehaviour
             Shoot();
         }
 
-        if (winCount == 8)
+        if (cat1ON && cat2ON && cat3ON && cat4ON)
         {
             Exit.SetActive(true);
 
@@ -210,32 +209,33 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 spawnPos = new Vector2(5, 5);
 
+        if (collision.tag == "EnemyProjectiles")
+        {
+            TakeDMG(15);
+        }
+
         if (collision.tag == "Cat 1")
         {
             Destroy(collision.gameObject);
             Cat1.SetActive(true);
-            winCount++;
             cat1ON = true;
         }
         if (collision.tag == "Cat 2")
         {
             Destroy(collision.gameObject);
             Cat2.SetActive(true);
-            winCount++;
             cat2ON = true;
         }
         if (collision.tag == "Cat 3")
         {
             Destroy(collision.gameObject);
             Cat3.SetActive(true);
-            winCount++;
             cat3ON = true;
         }
         if (collision.tag == "Cat 4")
         {
             Destroy(collision.gameObject);
             Cat4.SetActive(true);
-            winCount++;
             cat4ON = true;
         }
     }

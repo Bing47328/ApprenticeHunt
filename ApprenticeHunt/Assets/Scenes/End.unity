@@ -153,8 +153,9 @@ MonoBehaviour:
   textDisplay: {fileID: 414772471381980387}
   sentences:
   - The sorceress has found all the missing apprentices and saved the day
-  - 'There is peace in '
+  - There is peace in the forest again.
   - Thank You For Playing
+  - 
   index: 0
   typingSpeed: 0.09
   continueButton: {fileID: 414772470376644146}
@@ -263,6 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd56c25de2187944a01db32de825a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: Main Menu
 --- !u!95 &1464624886
 Animator:
   serializedVersion: 3
@@ -398,7 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialog: {fileID: 414772469929829698}
-  titleText: {fileID: 0}
+  titleText: {fileID: 1464624881}
   startText: {fileID: 1464624881}
   indexStop: 3
 --- !u!114 &1841000744

@@ -12,7 +12,7 @@ public class Scenes : MonoBehaviour
 
     public void Game()
     {
-        SceneManager.LoadScene("Sample Scene");
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void Intro()
