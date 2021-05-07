@@ -35,6 +35,10 @@ public class PlayerController : MonoBehaviour
     public GameObject Cat2;
     public GameObject Cat3;
     public GameObject Cat4;
+    public Animator Cat1animator;
+    public Animator Cat2animator;
+    public Animator Cat3animator;
+    public Animator Cat4animator;
 
     //Death
     public GameObject Dead;
@@ -96,6 +100,10 @@ public class PlayerController : MonoBehaviour
     {
         if (currentState == newState) return;
         animator.Play(newState);
+        Cat1animator.Play(newState);
+        Cat2animator.Play(newState);
+        Cat3animator.Play(newState);
+        Cat4animator.Play(newState);
         currentState = newState;
     }
 
