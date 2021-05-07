@@ -4,9 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Cat
   - Enemy
   - Projectile
+  - Cat 1
+  - Cat 2
+  - Cat 3
+  - Cat 4
   layers:
   - Default
   - TransparentFX

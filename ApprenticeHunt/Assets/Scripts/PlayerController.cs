@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
 
     //Animator
     private Animator animator;
-    private Animator catAnimator;
     private string currentState;
 
     //Dialog Box
@@ -31,11 +30,13 @@ public class PlayerController : MonoBehaviour
     public Transform shotLocation;
     bool isShooting = false;
 
-    //Cat
-    public GameObject cat;
-    public List<Transform> tailPositions;
+    //Cats
+    public GameObject Cat1;
+    public GameObject Cat2;
+    public GameObject Cat3;
+    public GameObject Cat4;
 
-
+    //Death
     public GameObject Dead;
     private void Awake()
     {
@@ -102,20 +103,6 @@ public class PlayerController : MonoBehaviour
     {
         rb.MovePosition(transform.position + change * speed * Time.deltaTime);
         ChangingAnimationState("Walk");
-
-        MoveCat();
-    }
-
-    void MoveCat()
-    {
-        Vector3 lastPos = GameObject.Find("Tail Holder").transform.position;
-
-        if (tailPositions.Count >= 1)
-        {
-            tailPositions.Last().position = lastPos;
-            tailPositions.Insert(0, tailPositions.Last());
-        }
-
     }
 
     void flip()
@@ -159,12 +146,25 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Enemy")
             currentHP -= 15;
 
-        if (collision.tag == "Cat")
+        if (collision.tag == "Cat 1")
         {
             Destroy(collision.gameObject);
-            GameObject newCat = Instantiate(cat, spawnPos, Quaternion.identity) as GameObject;
-            newCat.transform.parent = GameObject.Find("Tail Holder").transform;
-            tailPositions.Add(newCat.transform);
+            Cat1.SetActive(true);
+        }
+        if (collision.tag == "Cat 2")
+        {
+            Destroy(collision.gameObject);
+            Cat2.SetActive(true);
+        }
+        if (collision.tag == "Cat 3")
+        {
+            Destroy(collision.gameObject);
+            Cat3.SetActive(true);
+        }
+        if (collision.tag == "Cat 4")
+        {
+            Destroy(collision.gameObject);
+            Cat4.SetActive(true);
         }
     }
 

@@ -32,7 +32,7 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" || other.tag == "Projectile")
         {
             Instantiate(destoryEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);

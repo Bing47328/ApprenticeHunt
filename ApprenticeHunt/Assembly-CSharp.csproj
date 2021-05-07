@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\RoomMove.cs" />
     <Compile Include="Assets\Scripts\Scenes.cs" />
+    <Compile Include="Assets\SelfDestruct.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Unity/ApprenticeHunt/ApprenticeHunt/ApprenticeHunt/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
