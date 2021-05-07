@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Dialog.cs" />
     <Compile Include="Assets\Scripts\Enemies\Bat.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Enemies\EnemyProjectile.cs" />
     <Compile Include="Assets\Scripts\Enemies\Genie.cs" />
     <Compile Include="Assets\Scripts\Enemies\Mudmelt.cs" />
     <Compile Include="Assets\Scripts\NextScene.cs" />

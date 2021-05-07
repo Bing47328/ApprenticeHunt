@@ -83,9 +83,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Attack()
+    protected virtual void Attack()
     {
-        Debug.Log(gameObject + "is Attacking");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
