@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
     //Timer
     private float attackSpeed = 1f;
     private float canAttack;
+
+
     private void Awake()
     {
         animator = GetComponent<Animator>();

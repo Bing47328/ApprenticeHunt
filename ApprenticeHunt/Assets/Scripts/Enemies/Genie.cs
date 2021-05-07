@@ -4,30 +4,23 @@ using UnityEngine;
 
 public class Genie : Enemy
 {
-    private float moveRate = 2.0f;
-    private float moveTimer;
-
     private float shotRate = 2.1f;
     private float shotTimer;
-    public GameObject projectile;
+    private string currentState;
 
-    [SerializeField] private float minX, maxX, minY, maxY;
+    public GameObject projectile;
+    public Animator animator;
 
     protected override void Move()
     {
         //base.Move();//MARKER Give up the base Move Function!!
-        RandomMove();
     }
 
-    private void RandomMove()
+    void ChangingAnimationState(string newState)
     {
-        moveTimer += Time.deltaTime;
-
-        if (moveTimer > moveRate)
-        {
-            transform.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0);
-            moveTimer = 0;
-        }
+        if (currentState == newState) return;
+        animator.Play(newState);
+        currentState = newState;
     }
 
     protected override void Attack()
@@ -38,9 +31,13 @@ public class Genie : Enemy
 
         if (shotTimer > shotRate)
         {
+            ChangingAnimationState("Shoot");
             Instantiate(projectile, transform.position, Quaternion.identity);
             shotTimer = 0;
         }
+        else
+        {
+            ChangingAnimationState("Idle");
+        }
     }
-
 }
