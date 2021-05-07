@@ -85,6 +85,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Attack()
     {
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

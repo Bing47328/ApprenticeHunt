@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour
     bool isShooting = false;
 
     //Cats
+    bool cat1ON = false;
+    bool cat2ON = false;
+    bool cat3ON = false;
+    bool cat4ON = false;
+
     public GameObject Cat1;
     public GameObject Cat2;
     public GameObject Cat3;
@@ -39,9 +44,15 @@ public class PlayerController : MonoBehaviour
     public Animator Cat2animator;
     public Animator Cat3animator;
     public Animator Cat4animator;
+    private int winCount = 0;
 
     //Death
     public GameObject Dead;
+    public GameObject Exit;
+
+    //Timer
+    private float attackSpeed = 1f;
+    private float canAttack;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -85,14 +96,15 @@ public class PlayerController : MonoBehaviour
 
         closeDialog();
 
-        if (currentHP < 0)
-        {
-            Death();
-        }
 
         if (Input.GetKeyDown(KeyCode.Space) && !isShooting)
         {
             Shoot();
+        }
+
+        if (winCount == 4)
+        {
+            Exit.SetActive(true);
         }
     }
 
@@ -100,10 +112,22 @@ public class PlayerController : MonoBehaviour
     {
         if (currentState == newState) return;
         animator.Play(newState);
-        Cat1animator.Play(newState);
-        Cat2animator.Play(newState);
-        Cat3animator.Play(newState);
-        Cat4animator.Play(newState);
+        if(cat1ON)
+        {
+            Cat1animator.Play(newState);
+        }
+        if (cat2ON)
+        {
+            Cat2animator.Play(newState);
+        }
+        if (cat3ON)
+        {
+            Cat3animator.Play(newState);
+        }
+        if (cat4ON)
+        {
+            Cat4animator.Play(newState);
+        }
         currentState = newState;
     }
 
@@ -140,6 +164,15 @@ public class PlayerController : MonoBehaviour
         Dead.SetActive(true);
         Destroy(gameObject);
     }
+    public void TakeDMG(int dmgAmount)
+    {
+        //hurt.Play();
+        currentHP -= dmgAmount;
+        if (currentHP <= 0)
+        {
+            Death();
+        }
+    }
 
     void Shoot()
     {
@@ -151,28 +184,49 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 spawnPos = new Vector2(5, 5);
 
-        if (collision.tag == "Enemy")
-            currentHP -= 15;
-
         if (collision.tag == "Cat 1")
         {
             Destroy(collision.gameObject);
             Cat1.SetActive(true);
+            winCount++;
+            cat1ON = true;
         }
         if (collision.tag == "Cat 2")
         {
             Destroy(collision.gameObject);
             Cat2.SetActive(true);
+            winCount++;
+            cat2ON = true;
         }
         if (collision.tag == "Cat 3")
         {
             Destroy(collision.gameObject);
             Cat3.SetActive(true);
+            winCount++;
+            cat3ON = true;
         }
         if (collision.tag == "Cat 4")
         {
             Destroy(collision.gameObject);
             Cat4.SetActive(true);
+            winCount++;
+            cat4ON = true;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            if (attackSpeed <= canAttack)
+            {
+                TakeDMG(15);
+                canAttack = 0f;
+            }
+            else
+            {
+                canAttack += Time.deltaTime;
+            }
         }
     }
 
