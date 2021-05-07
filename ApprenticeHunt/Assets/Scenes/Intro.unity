@@ -528,6 +528,7 @@ MonoBehaviour:
   dialog: {fileID: 414772469929829698}
   titleText: {fileID: 1124787113}
   startText: {fileID: 1464624881}
+  indexStop: 12
 --- !u!114 &1841000744
 MonoBehaviour:
   m_ObjectHideFlags: 0

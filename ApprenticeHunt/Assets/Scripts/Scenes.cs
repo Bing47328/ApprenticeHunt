@@ -5,16 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class Scenes : MonoBehaviour
 {
-    void MainMenu()
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Game()
+    {
+        SceneManager.LoadScene("Sample Scene");
+    }
+
+    public void Intro()
     {
         SceneManager.LoadScene("Intro");
+    }
+
+    void End()
+    {
+        SceneManager.LoadScene("End");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            MainMenu();
+            End();
         }
     }
 }

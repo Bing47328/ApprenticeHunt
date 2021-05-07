@@ -8,6 +8,8 @@ public class Activation : MonoBehaviour
     public GameObject titleText;
     public GameObject startText;
 
+    public int indexStop;
+
     private void Update()
     {
         closeDialog();
@@ -15,7 +17,7 @@ public class Activation : MonoBehaviour
 
     void closeDialog()
     {
-        if (GameObject.Find("Dialog Manager").GetComponent<Dialog>().index == 12)
+        if (GameObject.Find("Dialog Manager").GetComponent<Dialog>().index == indexStop)
         {
             dialog.SetActive(false);
             titleText.SetActive(true);
